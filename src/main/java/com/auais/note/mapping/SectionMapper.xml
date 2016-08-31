@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auais.note.dao.SectionMapper">
+	<resultMap id="BaseResultMap" type="com.auais.note.pojo.Section">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="userId" property="userId" jdbcType="VARCHAR" />
+		<result column="noteId" property="noteId" jdbcType="VARCHAR" />
+		<result column="undocFlag" property="undocFlag" jdbcType="TINYINT" />
+		<result column="sectionType" property="sectionType" jdbcType="TINYINT" />
+		<result column="audioId" property="audioId" jdbcType="VARCHAR" />
+		<result column="updateAt" property="updateAt" jdbcType="TIMESTAMP" />
+		<result column="syncTimestamp" property="syncTimestamp"
+			jdbcType="TIMESTAMP" />
+		<result column="modifyFlag" property="modifyFlag" jdbcType="TINYINT" />
+		<result column="deleteFlag" property="deleteFlag" jdbcType="TINYINT" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.auais.note.pojo.SectionWithBLOBs"
+		extends="BaseResultMap">
+		<result column="text" property="text" jdbcType="LONGVARCHAR" />
+		<result column="imageIds" property="imageIds" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userId, noteId, undocFlag, sectionType, audioId, updateAt,
+		syncTimestamp, modifyFlag,
+		deleteFlag
+	</sql>
+	<sql id="Blob_Column_List">
+		text, imageIds
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_section
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectSectionListByUserId" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_section
+		where userId = #{userId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectSectionListByNoteId" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_section
+		where noteId = #{noteId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectSoruceByUserId" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_section
+		where userId = #{userId,jdbcType=VARCHAR}
+		  and ((sectionType=1 and imageIds !='') or (sectionType=2 and audioId !=''))
+	</select>
+
+	<select id="selectListBySyncTimeAndUserId" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		s.id, s.userId, s.noteId, s.undocFlag, s.sectionType, 
+		s.audioId, s.updateAt,s.syncTimestamp, s.modifyFlag,
+		s.deleteFlag,s.text, s.imageIds
+		from t_section s inner join t_note n on s.noteId = n.id
+		where 
+			timestampdiff(second , #{syncTimestamp,jdbcType=VARCHAR} , s.syncTimestamp) > 0
+			and s.userId = #{userId,jdbcType=VARCHAR}
+			and (n.deleteFlag = 0 or  n.deleteFlag is null)
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_section
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByUserId" parameterType="java.lang.String">
+		delete from t_section
+		where userId = #{userId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.auais.note.pojo.SectionWithBLOBs">
+		insert into t_section (id, userId, noteId,
+		undocFlag, sectionType, audioId,
+		updateAt, syncTimestamp, modifyFlag,
+		deleteFlag, text, imageIds
+		)
+		values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+		#{noteId,jdbcType=VARCHAR},
+		#{undocFlag,jdbcType=TINYINT}, #{sectionType,jdbcType=TINYINT}, #{audioId,jdbcType=VARCHAR},
+		#{updateAt,jdbcType=TIMESTAMP}, #{syncTimestamp,jdbcType=TIMESTAMP},
+		#{modifyFlag,jdbcType=TINYINT},
+		#{deleteFlag,jdbcType=TINYINT}, #{text,jdbcType=LONGVARCHAR}, #{imageIds,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<update id="batchInsert" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			insert into t_section (
+				id, userId, noteId,
+				undocFlag, sectionType, audioId,
+				updateAt, syncTimestamp, modifyFlag,
+				deleteFlag, text, imageIds)
+			values (
+				#{item.id,jdbcType=VARCHAR}, #{item.userId,jdbcType=VARCHAR},#{item.noteId,jdbcType=VARCHAR},
+				#{item.undocFlag,jdbcType=TINYINT}, #{item.sectionType,jdbcType=TINYINT}, #{item.audioId,jdbcType=VARCHAR},
+				#{item.updateAt,jdbcType=TIMESTAMP}, #{item.syncTimestamp,jdbcType=TIMESTAMP},#{item.modifyFlag,jdbcType=TINYINT},
+				#{item.deleteFlag,jdbcType=TINYINT}, #{item.text,jdbcType=LONGVARCHAR}, #{item.imageIds,jdbcType=LONGVARCHAR})
+		</foreach>
+	</update>
+	<insert id="insertSelective" parameterType="com.auais.note.pojo.SectionWithBLOBs">
+		insert into t_section
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				userId,
+			</if>
+			<if test="noteId != null">
+				noteId,
+			</if>
+			<if test="undocFlag != null">
+				undocFlag,
+			</if>
+			<if test="sectionType != null">
+				sectionType,
+			</if>
+			<if test="audioId != null">
+				audioId,
+			</if>
+			<if test="updateAt != null">
+				updateAt,
+			</if>
+			<if test="syncTimestamp != null">
+				syncTimestamp,
+			</if>
+			<if test="modifyFlag != null">
+				modifyFlag,
+			</if>
+			<if test="deleteFlag != null">
+				deleteFlag,
+			</if>
+			<if test="text != null">
+				text,
+			</if>
+			<if test="imageIds != null">
+				imageIds,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="noteId != null">
+				#{noteId,jdbcType=VARCHAR},
+			</if>
+			<if test="undocFlag != null">
+				#{undocFlag,jdbcType=TINYINT},
+			</if>
+			<if test="sectionType != null">
+				#{sectionType,jdbcType=TINYINT},
+			</if>
+			<if test="audioId != null">
+				#{audioId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateAt != null">
+				#{updateAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimestamp != null">
+				#{syncTimestamp,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyFlag != null">
+				#{modifyFlag,jdbcType=TINYINT},
+			</if>
+			<if test="deleteFlag != null">
+				#{deleteFlag,jdbcType=TINYINT},
+			</if>
+			<if test="text != null">
+				#{text,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="imageIds != null">
+				#{imageIds,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.auais.note.pojo.SectionWithBLOBs">
+		update t_section
+		<set>
+			<if test="userId != null">
+				userId = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="noteId != null">
+				noteId = #{noteId,jdbcType=VARCHAR},
+			</if>
+			<if test="undocFlag != null">
+				undocFlag = #{undocFlag,jdbcType=TINYINT},
+			</if>
+			<if test="sectionType != null">
+				sectionType = #{sectionType,jdbcType=TINYINT},
+			</if>
+			<if test="audioId != null">
+				audioId = #{audioId,jdbcType=VARCHAR},
+			</if>
+			<if test="updateAt != null">
+				updateAt = #{updateAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimestamp != null">
+				syncTimestamp = #{syncTimestamp,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyFlag != null">
+				modifyFlag = #{modifyFlag,jdbcType=TINYINT},
+			</if>
+			<if test="deleteFlag != null">
+				deleteFlag = #{deleteFlag,jdbcType=TINYINT},
+			</if>
+			<if test="text != null">
+				text = #{text,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="imageIds != null">
+				imageIds = #{imageIds,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.auais.note.pojo.SectionWithBLOBs">
+		update t_section
+		set userId = #{userId,jdbcType=VARCHAR},
+		noteId = #{noteId,jdbcType=VARCHAR},
+		undocFlag = #{undocFlag,jdbcType=TINYINT},
+		sectionType = #{sectionType,jdbcType=TINYINT},
+		audioId = #{audioId,jdbcType=VARCHAR},
+		updateAt = #{updateAt,jdbcType=TIMESTAMP},
+		syncTimestamp = #{syncTimestamp,jdbcType=TIMESTAMP},
+		modifyFlag = #{modifyFlag,jdbcType=TINYINT},
+		deleteFlag = #{deleteFlag,jdbcType=TINYINT},
+		text = #{text,jdbcType=LONGVARCHAR},
+		imageIds = #{imageIds,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.auais.note.pojo.Section">
+		update t_section
+		set userId = #{userId,jdbcType=VARCHAR},
+		noteId = #{noteId,jdbcType=VARCHAR},
+		undocFlag = #{undocFlag,jdbcType=TINYINT},
+		sectionType = #{sectionType,jdbcType=TINYINT},
+		audioId = #{audioId,jdbcType=VARCHAR},
+		updateAt = #{updateAt,jdbcType=TIMESTAMP},
+		syncTimestamp = #{syncTimestamp,jdbcType=TIMESTAMP},
+		modifyFlag = #{modifyFlag,jdbcType=TINYINT},
+		deleteFlag = #{deleteFlag,jdbcType=TINYINT}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="batchUpdate" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+				update t_section
+				set userId = #{item.userId,jdbcType=VARCHAR},
+					noteId = #{item.noteId,jdbcType=VARCHAR},
+					undocFlag = #{item.undocFlag,jdbcType=TINYINT},
+					sectionType = #{item.sectionType,jdbcType=TINYINT},
+					audioId = #{item.audioId,jdbcType=VARCHAR},
+					updateAt = #{item.updateAt,jdbcType=TIMESTAMP},
+					syncTimestamp = #{item.syncTimestamp,jdbcType=TIMESTAMP},
+					modifyFlag = #{item.modifyFlag,jdbcType=TINYINT},
+					deleteFlag = #{item.deleteFlag,jdbcType=TINYINT},
+					text = #{item.text,jdbcType=LONGVARCHAR},
+					imageIds = #{item.imageIds,jdbcType=LONGVARCHAR}
+				where id = #{item.id,jdbcType=VARCHAR}
+		</foreach>
+	</update>
+</mapper>

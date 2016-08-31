@@ -1,0 +1,41 @@
+{
+ 	"id" : "1",
+ 	"name": "示例项目",
+	"userId":"用户名",
+ 	"syncTimestamp": "2016-04-26T08:29:18.476Z",
+ 	"modifiyLock": false,
+ 	"creatAt": "2016-04-26T08:29:18.476Z",
+ 	"updateAt": "2016-04-26T08:29:18.476Z",
+ 	"items": [{
+		"id" : "1000",
+ 		"name": "示例节点",
+ 		"type": "node",
+ 		"items": [{
+ 			"id" : "1001",
+ 			"name": "示例长文11",
+ 			"type": "content",
+ 			"items": "url1"
+ 		},{
+ 			"id" : "1002",
+ 			"name": "示例长文12",
+ 			"type": "content",
+ 			"items": "url2"
+ 		},{
+ 			"id" : "1003",
+ 			"name": "示例长文13",
+ 			"type": "content",
+ 			"items": "url3"
+ 		}]
+ 	},{
+		"id" : "2001",
+ 		"name": "示例长文21",
+ 		"type": "content",
+ 		"items": "url2001"
+ 	},{
+		"id" : "3001",
+ 		"name": "示例长文31",
+ 		"type": "content",
+ 		"items": "url3001"
+ 	}]
+ 	
+ }

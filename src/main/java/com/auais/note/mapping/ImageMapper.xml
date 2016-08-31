@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auais.note.dao.ImageMapper">
+	<resultMap id="BaseResultMap" type="com.auais.note.pojo.Image">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="imageUrl" property="imageUrl" jdbcType="VARCHAR" />
+		<result column="size" property="size" jdbcType="REAL" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.auais.note.pojo.Image"
+		extends="BaseResultMap">
+		<result column="imageTagIds" property="imageTagIds" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, imageUrl, size
+	</sql>
+	<sql id="Blob_Column_List">
+		imageTagIds
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_image
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectListByIds" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_image
+		where id in
+		<foreach item="item" index="index" collection="array" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_image
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByIds" parameterType="com.auais.note.pojo.Image">
+		delete from t_image
+		where id in
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator=",">
+			#{item.id,jdbcType=VARCHAR}
+		</foreach>		
+	</delete>
+	<delete id="deleteByIdsArray" parameterType="java.lang.String">
+		delete from t_image
+		where id in
+		<foreach item="item" index="index" collection="array" open="(" close=")" separator=",">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="com.auais.note.pojo.Image">
+		insert into t_image (id, imageUrl, size, imageTagIds
+		)
+		values (#{id,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR},#{size,jdbcType=REAL}, 
+		#{imageTagIds,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="batchInsert" parameterType="com.auais.note.pojo.Image">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			insert into t_image (id, imageUrl, size, imageTagIds)
+			values (#{item.id,jdbcType=VARCHAR}, #{item.imageUrl,jdbcType=VARCHAR},
+				#{item.size,jdbcType=REAL}, #{item.imageTagIds,jdbcType=LONGVARCHAR})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.auais.note.pojo.Image">
+		insert into t_image
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="imageUrl != null">
+				imageUrl,
+		      	</if>
+		      	<if test="size != null" >
+		        	size,
+			</if>
+			<if test="imageTagIds != null">
+				imageTagIds,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="imageUrl != null">
+				#{imageUrl,jdbcType=VARCHAR},
+			</if>
+		      <if test="size != null" >
+		        #{size,jdbcType=REAL},
+		      </if>
+			<if test="imageTagIds != null">
+				#{imageTagIds,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.auais.note.pojo.Image">
+		update t_image
+		<set>
+			<if test="imageUrl != null">
+				imageUrl = #{imageUrl,jdbcType=VARCHAR},
+			</if>
+		      <if test="size != null" >
+		        size = #{size,jdbcType=REAL},
+		      </if>
+			<if test="imageTagIds != null">
+				imageTagIds = #{imageTagIds,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.auais.note.pojo.Image">
+		update t_image
+		set imageUrl = #{imageUrl,jdbcType=VARCHAR},
+		size = #{size,jdbcType=REAL},
+		imageTagIds = #{imageTagIds,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.auais.note.pojo.Image">
+		update t_image
+		set imageUrl = #{imageUrl,jdbcType=VARCHAR},
+		size = #{size,jdbcType=REAL}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

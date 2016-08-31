@@ -1,0 +1,29 @@
+{
+    userId:"user0001",
+    deviceId:"device0001",
+    sectionSyncTimestamp:"2016-08-10 16:58:23",
+    notes:[
+        {
+            "noteId":"note0001",
+            "syncTimestamp":"2016-08-10 16:58:23",
+            "modifyFlag":1
+        },
+        {
+            "noteId":"note0002",
+            "syncTimestamp":"2016-08-10 16:58:23",
+            "modifyFlag":1
+        }
+    ]
+}
+{
+    "sectionSyncTimestamp":"",
+    "userId":"00000001",
+    "notes":[
+        {
+            "modifyFlag":"",
+            "noteId":"DF59F7D1-2676-4F73-A239-6770D79C29ED",
+            "syncTimestamp":""
+        }
+    ],
+    "deviceId":"39076093-5F4B-41BE-82E7-27FCCB2FCFE5_1472111655784_31e824cc471359e7"
+}

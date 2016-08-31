@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auais.note.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.auais.note.pojo.User" >
+    <id column="userId" property="userId" jdbcType="BIGINT" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="userPhoto" property="userPhoto" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="createAt" property="createAt" jdbcType="TIMESTAMP" />
+    <result column="loginCount" property="loginCount" jdbcType="INTEGER" />
+    <result column="loginTime" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="lastLoginTime" property="lastLoginTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userId, userName, userPhoto, password, mobile, email, status, createAt, loginCount, 
+    loginTime, lastLoginTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where userId = #{userId,jdbcType=BIGINT}
+  </select>
+  <select id="selectMaxUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   	  select max(userId) as userId from t_user
+  </select>
+  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   	  select 
+   	  <include refid="Base_Column_List" />
+   	    from t_user
+       where email = #{userName,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUserNameAndPass" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   	  select 
+   	  <include refid="Base_Column_List" />
+   	    from t_user
+       where 1=1
+         and (userName = #{userName,jdbcType=VARCHAR}
+          or userId = #{userName,jdbcType=VARCHAR}
+       	  or mobile = #{userName,jdbcType=VARCHAR}
+       	  or email = #{userName,jdbcType=VARCHAR})
+         and password = #{password,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByEmailOrPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   	  select 
+		<include refid="Base_Column_List" />
+		from t_user
+       where 1=1
+      <if test="mobile != null" >
+          and mobile = #{mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null" >
+          and email = #{email,jdbcType=VARCHAR}
+      </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_user
+    where userId = #{userId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.auais.note.pojo.User" >
+    insert into t_user (userId, userName, userPhoto, 
+      password, mobile, email, 
+      status, createAt, loginCount, 
+      loginTime, lastLoginTime)
+    values (#{userId,jdbcType=BIGINT}, #{userName,jdbcType=VARCHAR}, #{userPhoto,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{createAt,jdbcType=TIMESTAMP}, #{loginCount,jdbcType=INTEGER}, 
+      #{loginTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.auais.note.pojo.User" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="userName != null" >
+        userName,
+      </if>
+      <if test="userPhoto != null" >
+        userPhoto,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createAt != null" >
+        createAt,
+      </if>
+      <if test="loginCount != null" >
+        loginCount,
+      </if>
+      <if test="loginTime != null" >
+        loginTime,
+      </if>
+      <if test="lastLoginTime != null" >
+        lastLoginTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhoto != null" >
+        #{userPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createAt != null" >
+        #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCount != null" >
+        #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.auais.note.pojo.User" >
+    update t_user
+    <set >
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhoto != null" >
+        userPhoto = #{userPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createAt != null" >
+        createAt = #{createAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCount != null" >
+        loginCount = #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="loginTime != null" >
+        loginTime = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        lastLoginTime = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userId = #{userId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.auais.note.pojo.User" >
+    update t_user
+    set userName = #{userName,jdbcType=VARCHAR},
+      userPhoto = #{userPhoto,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      createAt = #{createAt,jdbcType=TIMESTAMP},
+      loginCount = #{loginCount,jdbcType=INTEGER},
+      loginTime = #{loginTime,jdbcType=TIMESTAMP},
+      lastLoginTime = #{lastLoginTime,jdbcType=TIMESTAMP}
+    where userId = #{userId,jdbcType=BIGINT}
+  </update>
+</mapper>

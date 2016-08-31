@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auais.note.dao.AudioMapper">
+	<resultMap id="BaseResultMap" type="com.auais.note.pojo.Audio">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="audioUrl" property="audioUrl" jdbcType="VARCHAR" />
+		<result column="duration" property="duration" jdbcType="VARCHAR" />
+		<result column="size" property="size" jdbcType="REAL" />
+		<result column="audioTagIds" property="audioTagIds" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, audioUrl, duration,size,audioTagIds
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_audio
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_audio
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.auais.note.pojo.Audio">
+		insert into t_audio (id, audioUrl, duration,size, audioTagIds)
+		values (#{id,jdbcType=VARCHAR}, #{audioUrl,jdbcType=VARCHAR},
+		#{duration,jdbcType=VARCHAR},#{size,jdbcType=REAL},#{audioTagIds,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.auais.note.pojo.Audio">
+		insert into t_audio
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="audioUrl != null">
+				audioUrl,
+			</if>
+			<if test="duration != null">
+				duration,
+		      </if>
+		      <if test="size != null" >
+		        size,
+			</if>
+			<if test="audioTagIds != null">
+				audioTagIds,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="audioUrl != null">
+				#{audioUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="duration != null">
+				#{duration,jdbcType=VARCHAR},
+			</if>
+		      <if test="size != null" >
+		        #{size,jdbcType=REAL},
+		      </if>
+			<if test="audioTagIds != null">
+				#{audioTagIds,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.auais.note.pojo.Audio">
+		update t_audio
+		<set>
+			<if test="audioUrl != null">
+				audioUrl = #{audioUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="duration != null">
+				duration = #{duration,jdbcType=VARCHAR},
+			</if>
+		      <if test="size != null" >
+		        size = #{size,jdbcType=REAL},
+		      </if>
+			<if test="audioTagIds != null">
+				audioTagIds = #{audioTagIds,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.auais.note.pojo.Audio">
+		update t_audio
+		set audioUrl = #{audioUrl,jdbcType=VARCHAR},
+		duration = #{duration,jdbcType=VARCHAR},
+		size = #{size,jdbcType=REAL},
+		audioTagIds = #{audioTagIds,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.auais.note.pojo.Audio">
+		update t_audio
+		set audioUrl = #{audioUrl,jdbcType=VARCHAR},
+		duration = #{duration,jdbcType=VARCHAR},
+		size = #{size,jdbcType=REAL}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

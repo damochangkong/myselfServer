@@ -1,0 +1,333 @@
+{
+    "code":"0000",
+    "message":"同步成功",
+    "notes":[
+        {
+            "code":"1",
+            "message":"设备ID一致，请直接上传"
+        },
+        {
+            "code":"3001",
+            "message":"本地已经修改，服务端项目没有删除，返回全量项目信息",
+            "data":{
+                "minds":[
+                    {
+                        "childIds":"mind1004,mind1005",
+                        "sectionIds":"",
+                        "id":"mind1003",
+                        "noteId":"pro0002",
+                        "mindType":0,
+                        "name":"MindB",
+                        "syncTimestamp":"Aug 12, 2016 5:13:22 PM",
+                        "modifyFlag":0,
+                        "deleteFlag":0
+                    },
+                    {
+                        "childIds":"",
+                        "sectionIds":"SECTION1000,SECTION4000",
+                        "id":"mind1004",
+                        "noteId":"pro0002",
+                        "mindType":0,
+                        "name":"MindC",
+                        "syncTimestamp":"Aug 12, 2016 5:47:41 PM",
+                        "modifyFlag":0,
+                        "deleteFlag":0
+                    },
+                    {
+                        "childIds":"",
+                        "sectionIds":"SECTION4002,SECTION3000",
+                        "id":"mind1005",
+                        "noteId":"pro0002",
+                        "mindType":0,
+                        "name":"MindD",
+                        "syncTimestamp":"Aug 12, 2016 5:42:10 PM",
+                        "modifyFlag":0,
+                        "deleteFlag":0
+                    }
+                ],
+                "sections":[
+                    {
+                        "id":"SECTION1000",
+                        "userId":"USER00001",
+                        "noteId":"pro0002",
+                        "undocFlag":0,
+                        "sectionType":0,
+                        "updateAt":"Aug 12, 2016 5:57:10 PM",
+                        "syncTimestamp":"Aug 16, 2016 5:52:15 PM",
+                        "modifyFlag":0,
+                        "deleteFlag":0,
+                        "text":"SSSSSS"
+                    },
+                    {
+                        "id":"SECTION3000",
+                        "userId":"USER00001",
+                        "noteId":"pro0002",
+                        "undocFlag":0,
+                        "sectionType":1,
+                        "updateAt":"Aug 12, 2016 5:57:40 PM",
+                        "syncTimestamp":"Aug 12, 2016 3:52:15 AM",
+                        "modifyFlag":0,
+                        "deleteFlag":0,
+                        "text":"",
+                        "imageIds":[
+                            
+                        ]
+                    },
+                    {
+                        "id":"SECTION4000",
+                        "userId":"USER00001",
+                        "noteId":"pro0002",
+                        "undocFlag":0,
+                        "sectionType":2,
+                        "audioId":{
+                            "id":"audio1000",
+                            "audioUrl":"url01010101",
+                            "duration":"03:45",
+                            "audioTagIds":[
+                                {
+                                    "id":"audioTag001",
+                                    "tagType":0,
+                                    "imageUrl":"",
+                                    "timePoint":"00:45",
+                                    "text":"this is the end"
+                                },
+                                {
+                                    "id":"audioTag002",
+                                    "tagType":1,
+                                    "imageUrl":"imageUrl0001",
+                                    "timePoint":"00:30"
+                                }
+                            ]
+                        },
+                        "updateAt":"Aug 12, 2016 5:57:17 PM",
+                        "syncTimestamp":"Aug 16, 2016 5:52:15 PM",
+                        "modifyFlag":0,
+                        "deleteFlag":0,
+                        "text":""
+                    },
+                    {
+                        "id":"SECTION4002",
+                        "userId":"USER00001",
+                        "noteId":"pro0002",
+                        "undocFlag":2,
+                        "sectionType":1,
+                        "updateAt":"Aug 12, 2016 5:57:32 PM",
+                        "syncTimestamp":"Aug 16, 2016 5:52:15 PM",
+                        "modifyFlag":0,
+                        "deleteFlag":0,
+                        "text":"",
+                        "imageIds":[
+                            {
+                                "id":"image10002",
+                                "imageUrl":"1234567890",
+                                "imageTagIds":[
+                                    {
+                                        "id":"imageTag001",
+                                        "tagType":0,
+                                        "sourceUrl":"",
+                                        "directionX":"30%",
+                                        "directionY":"30%",
+                                        "duration":"",
+                                        "isLeft":1,
+                                        "text":"this is word"
+                                    },
+                                    {
+                                        "id":"imageTag002",
+                                        "tagType":1,
+                                        "sourceUrl":"456456",
+                                        "directionX":"50%",
+                                        "directionY":"50%",
+                                        "duration":"",
+                                        "isLeft":1,
+                                        "text":""
+                                    },
+                                    {
+                                        "id":"imageTag003",
+                                        "tagType":2,
+                                        "sourceUrl":"123123",
+                                        "directionX":"70%",
+                                        "directionY":"70%",
+                                        "duration":"03:30",
+                                        "isLeft":1,
+                                        "text":""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "id":"pro0002",
+                "userId":"user0002",
+                "name":"dafeng",
+                "createAt":"Aug 12, 2016 5:09:37 PM",
+                "updateAt":"Aug 12, 2016 5:06:02 PM",
+                "syncTimestamp":"Aug 12, 2016 5:06:05 PM",
+                "deleteFlag":0,
+                "deviceId":"device0002",
+                "childIds":"mind1003"
+            }
+        }
+    ],
+    "sections":[
+        {
+            "id":"SECTION1000",
+            "userId":"USER00001",
+            "noteId":"pro0002",
+            "undocFlag":0,
+            "sectionType":0,
+            "updateAt":"Aug 12, 2016 5:57:10 PM",
+            "syncTimestamp":"Aug 16, 2016 5:52:15 PM",
+            "modifyFlag":0,
+            "deleteFlag":0,
+            "text":"SSSSSS"
+        },
+        {
+            "id":"SECTION1002",
+            "userId":"USER00001",
+            "noteId":"NOTE0001",
+            "undocFlag":0,
+            "sectionType":0,
+            "updateAt":"Aug 12, 2016 10:33:01 AM",
+            "syncTimestamp":"Aug 11, 2016 5:52:15 PM",
+            "modifyFlag":0,
+            "deleteFlag":0,
+            "text":"this is the end222"
+        },
+        {
+            "id":"SECTION2000",
+            "userId":"USER00001",
+            "noteId":"NOTE0001",
+            "undocFlag":0,
+            "sectionType":0,
+            "updateAt":"Aug 12, 2016 9:05:07 AM",
+            "syncTimestamp":"Aug 12, 2016 5:52:15 PM",
+            "modifyFlag":0,
+            "deleteFlag":0,
+            "text":"aaaaaa"
+        },
+        {
+            "id":"SECTION2002",
+            "userId":"USER00001",
+            "noteId":"NOTE0001",
+            "undocFlag":0,
+            "sectionType":0,
+            "updateAt":"Aug 12, 2016 10:33:14 AM",
+            "syncTimestamp":"Aug 11, 2016 5:52:15 PM",
+            "modifyFlag":0,
+            "deleteFlag":0,
+            "text":"this is the end222"
+        },
+        {
+            "id":"SECTION3000",
+            "userId":"USER00001",
+            "noteId":"pro0002",
+            "undocFlag":0,
+            "sectionType":1,
+            "updateAt":"Aug 12, 2016 5:57:40 PM",
+            "syncTimestamp":"Aug 12, 2016 3:52:15 AM",
+            "modifyFlag":0,
+            "deleteFlag":0,
+            "text":"",
+            "imageIds":[
+                
+            ]
+        },
+        {
+            "id":"SECTION3002",
+            "userId":"USER00001",
+            "noteId":"NOTE0001",
+            "undocFlag":1,
+            "sectionType":2,
+            "audioId":{
+                
+            },
+            "updateAt":"Aug 12, 2016 11:42:41 AM",
+            "syncTimestamp":"Aug 11, 2016 5:52:15 PM",
+            "modifyFlag":0,
+            "deleteFlag":0,
+            "text":""
+        },
+        {
+            "id":"SECTION4000",
+            "userId":"USER00001",
+            "noteId":"pro0002",
+            "undocFlag":0,
+            "sectionType":2,
+            "audioId":{
+                "id":"audio1000",
+                "audioUrl":"url01010101",
+                "duration":"03:45",
+                "audioTagIds":[
+                    {
+                        "id":"audioTag001",
+                        "tagType":0,
+                        "imageUrl":"",
+                        "timePoint":"00:45",
+                        "text":"this is the end"
+                    },
+                    {
+                        "id":"audioTag002",
+                        "tagType":1,
+                        "imageUrl":"imageUrl0001",
+                        "timePoint":"00:30"
+                    }
+                ]
+            },
+            "updateAt":"Aug 12, 2016 5:57:17 PM",
+            "syncTimestamp":"Aug 16, 2016 5:52:15 PM",
+            "modifyFlag":0,
+            "deleteFlag":0,
+            "text":""
+        },
+        {
+            "id":"SECTION4002",
+            "userId":"USER00001",
+            "noteId":"pro0002",
+            "undocFlag":2,
+            "sectionType":1,
+            "updateAt":"Aug 12, 2016 5:57:32 PM",
+            "syncTimestamp":"Aug 16, 2016 5:52:15 PM",
+            "modifyFlag":0,
+            "deleteFlag":0,
+            "text":"",
+            "imageIds":[
+                {
+                    "id":"image10002",
+                    "imageUrl":"1234567890",
+                    "imageTagIds":[
+                        {
+                            "id":"imageTag001",
+                            "tagType":0,
+                            "sourceUrl":"",
+                            "directionX":"30%",
+                            "directionY":"30%",
+                            "duration":"",
+                            "isLeft":1,
+                            "text":"this is word"
+                        },
+                        {
+                            "id":"imageTag002",
+                            "tagType":1,
+                            "sourceUrl":"456456",
+                            "directionX":"50%",
+                            "directionY":"50%",
+                            "duration":"",
+                            "isLeft":1,
+                            "text":""
+                        },
+                        {
+                            "id":"imageTag003",
+                            "tagType":2,
+                            "sourceUrl":"123123",
+                            "directionX":"70%",
+                            "directionY":"70%",
+                            "duration":"03:30",
+                            "isLeft":1,
+                            "text":""
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

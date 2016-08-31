@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auais.note.dao.RegisterMapper">
+  <resultMap id="BaseResultMap" type="com.auais.note.pojo.Register">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="smsCode" jdbcType="VARCHAR" property="smsCode" />
+    <result column="smsTime" jdbcType="TIMESTAMP" property="smsTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userName, smsCode, smsTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_register
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_register
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.auais.note.pojo.Register">
+    insert into t_register (id, userName, smsCode, 
+      smsTime)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{smsCode,jdbcType=VARCHAR}, 
+      #{smsTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.auais.note.pojo.Register">
+    insert into t_register
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="smsCode != null">
+        smsCode,
+      </if>
+      <if test="smsTime != null">
+        smsTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="smsCode != null">
+        #{smsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="smsTime != null">
+        #{smsTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.auais.note.pojo.Register">
+    update t_register
+    <set>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="smsCode != null">
+        smsCode = #{smsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="smsTime != null">
+        smsTime = #{smsTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.auais.note.pojo.Register">
+    update t_register
+    set userName = #{userName,jdbcType=VARCHAR},
+      smsCode = #{smsCode,jdbcType=VARCHAR},
+      smsTime = #{smsTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

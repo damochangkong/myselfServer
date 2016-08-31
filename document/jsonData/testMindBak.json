@@ -1,0 +1,102 @@
+{
+    "code":"0000",
+    "message":"同步成功",
+    "notes":[
+        {
+            "noteId":"529ECE81-B4B9-49D1-8C85-DEB96EB24B3E",
+            "code":"1002",
+            "message":"设备ID一致，请直接上传"
+        }
+    ],
+    "sections":[
+        {
+            "id":"204A111E-750E-457E-A90B-CDC94DBD6A97",
+            "userId":"00000001",
+            "noteId":"529ECE81-B4B9-49D1-8C85-DEB96EB24B3E",
+            "undocFlag":0,
+            "sectionType":1,
+            "updateAt":"Aug 30, 2016 4:44:23 PM",
+            "syncTimestamp":"Aug 30, 2016 5:04:47 PM",
+            "deleteFlag":0,
+            "imageIds":[
+                {
+                    "id":"6BB19BB4-B144-4AEF-8A62-D89883D3202B",
+                    "imageUrl":"EE3AB5F7-9778-4AD6-B57A-0EE768F1B0BB",
+                    "imageTagIds":[
+                        {
+                            "id":"4EDF09F2-32E0-4412-AFAC-B0B6E18228F4",
+                            "tagType":2,
+                            "sourceUrl":"",
+                            "directionX":"0.6884057521820068",
+                            "directionY":"0.6221920251846313",
+                            "duration":"7",
+                            "isLeft":1,
+                            "text":"AF5D91CA-576C-452B-9CBA-79117D8EDE0C"
+                        },
+                        {
+                            "id":"8B850BAF-562C-4381-BA5A-06D039D5E8D2",
+                            "tagType":1,
+                            "sourceUrl":"",
+                            "directionX":"0.5193236470222473",
+                            "directionY":"0.3863828778266907",
+                            "duration":"",
+                            "isLeft":0,
+                            "text":"8BA59F51-A87C-43D2-B7D7-D1A45667179C"
+                        },
+                        {
+                            "id":"A755B868-BD90-4872-875D-30B26FC505E2",
+                            "tagType":0,
+                            "sourceUrl":"",
+                            "directionX":"0.533816397190094",
+                            "directionY":"0.5305480360984802",
+                            "duration":"",
+                            "isLeft":0,
+                            "text":"???? ? 02"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id":"3B4AF316-EDDF-44A4-A7DD-0973777CF7F8",
+            "userId":"00000001",
+            "noteId":"529ECE81-B4B9-49D1-8C85-DEB96EB24B3E",
+            "undocFlag":0,
+            "sectionType":2,
+            "audioId":{
+                "id":"13763AF4-7717-4AA0-9A0F-1FA2380D338E",
+                "audioUrl":"944CDE40-7FB7-46FB-B8A8-DF0BF381CD90",
+                "duration":"00:10",
+                "audioTagIds":[
+                    {
+                        "id":"88A83384-4841-4FD6-917E-34B780CDEF6B",
+                        "tagType":0,
+                        "imageUrl":"",
+                        "timePoint":"",
+                        "text":"???? ? 02"
+                    },
+                    {
+                        "id":"96E8685F-6096-4BC9-83F3-95A96CD780FF",
+                        "tagType":1,
+                        "imageUrl":"",
+                        "timePoint":"",
+                        "text":"544CC85C-2FD6-45F9-8601-20D40CE4CAF5"
+                    }
+                ]
+            },
+            "updateAt":"Aug 30, 2016 4:45:41 PM",
+            "syncTimestamp":"Aug 30, 2016 5:04:47 PM",
+            "deleteFlag":0
+        },
+        {
+            "id":"F685EA57-3224-4CD6-AED9-E1AB68ACD3B1",
+            "userId":"00000001",
+            "noteId":"529ECE81-B4B9-49D1-8C85-DEB96EB24B3E",
+            "undocFlag":0,
+            "sectionType":0,
+            "updateAt":"Aug 29, 2016 3:43:01 PM",
+            "syncTimestamp":"Aug 30, 2016 5:04:47 PM",
+            "deleteFlag":0
+        }
+    ]
+}

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auais.note.dao.LockMapper">
+	<resultMap id="BaseResultMap" type="com.auais.note.pojo.Lock">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userId" property="userId" jdbcType="VARCHAR" />
+		<result column="deviceId" property="deviceId" jdbcType="VARCHAR" />
+		<result column="lockStatus" property="lockStatus" jdbcType="TINYINT" />
+		<result column="createAt" property="createAt" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userId, deviceId, lockStatus, createAt
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_lock
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUserIdAndDeviceId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_lock
+		where 1=1
+		<if test="userId != null">
+			and userId = #{userId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null">
+			and deviceId = #{deviceId,jdbcType=VARCHAR}
+		</if>		
+	</select>	
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_lock
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByUserIdAndDeviceId" parameterType="java.lang.Integer">
+		delete from t_lock
+		where 1=1
+		<if test="userId != null">
+			and userId = #{userId,jdbcType=VARCHAR}
+		</if>
+		<if test="deviceId != null">
+			and deviceId = #{deviceId,jdbcType=VARCHAR}
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.auais.note.pojo.Lock">
+		insert into t_lock (id, userId, deviceId,
+		lockStatus, createAt)
+		values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR},
+		#{deviceId,jdbcType=VARCHAR},
+		#{lockStatus,jdbcType=TINYINT}, #{createAt,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.auais.note.pojo.Lock">
+		insert into t_lock
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				userId,
+			</if>
+			<if test="deviceId != null">
+				deviceId,
+			</if>
+			<if test="lockStatus != null">
+				lockStatus,
+			</if>
+			<if test="createAt != null">
+				createAt,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceId != null">
+				#{deviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="lockStatus != null">
+				#{lockStatus,jdbcType=TINYINT},
+			</if>
+			<if test="createAt != null">
+				#{createAt,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.auais.note.pojo.Lock">
+		update t_lock
+		<set>
+			<if test="userId != null">
+				userId = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="deviceId != null">
+				deviceId = #{deviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="lockStatus != null">
+				lockStatus = #{lockStatus,jdbcType=TINYINT},
+			</if>
+			<if test="createAt != null">
+				createAt = #{createAt,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.auais.note.pojo.Lock">
+		update t_lock
+		set userId = #{userId,jdbcType=VARCHAR},
+		deviceId = #{deviceId,jdbcType=VARCHAR},
+		lockStatus = #{lockStatus,jdbcType=TINYINT},
+		createAt = #{createAt,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

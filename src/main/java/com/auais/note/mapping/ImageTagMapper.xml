@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auais.note.dao.ImageTagMapper">
+	<resultMap id="BaseResultMap" type="com.auais.note.pojo.ImageTag">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="tagType" property="tagType" jdbcType="TINYINT" />
+		<result column="sourceUrl" property="sourceUrl" jdbcType="VARCHAR" />
+		<result column="directionX" property="directionX" jdbcType="VARCHAR" />
+		<result column="directionY" property="directionY" jdbcType="VARCHAR" />
+		<result column="duration" property="duration" jdbcType="VARCHAR" />
+		<result column="size" property="size" jdbcType="REAL" />
+		<result column="isLeft" property="isLeft" jdbcType="TINYINT" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.auais.note.pojo.ImageTag"
+		extends="BaseResultMap">
+		<result column="text" property="text" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, tagType, sourceUrl, directionX, directionY, duration, size, isLeft
+	</sql>
+	<sql id="Blob_Column_List">
+		text
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_image_tag
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectListByIds" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_image_tag 
+		where id in
+		<foreach item="item" index="index" collection="array" open="("
+			separator="," close=")">
+			#{item ,jdbcType=VARCHAR}
+		</foreach>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_image_tag
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<delete id="deleteByIds" parameterType="com.auais.note.pojo.ImageTag">
+		delete from t_image_tag
+		where id in
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator=",">
+			#{item.id,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+	<delete id="deleteByIdsArray" parameterType="java.lang.String">
+		delete from t_image_tag
+		where id in
+		<foreach item="item" index="index" collection="array" open="(" close=")" separator=",">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="com.auais.note.pojo.ImageTag">
+		insert into t_image_tag (id, tagType, sourceUrl,
+		directionX, directionY, duration,
+		size, isLeft, text)
+		values (#{id,jdbcType=VARCHAR}, #{tagType,jdbcType=TINYINT},
+		#{sourceUrl,jdbcType=VARCHAR},
+		#{directionX,jdbcType=VARCHAR}, #{directionY,jdbcType=VARCHAR}, #{duration,jdbcType=VARCHAR},
+		#{size,jdbcType=REAL}, #{isLeft,jdbcType=TINYINT}, #{text,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="batchInsert" parameterType="com.auais.note.pojo.ImageTag">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			insert into t_image_tag (id, tagType, sourceUrl,
+				directionX, directionY, duration,size, isLeft, text)
+			values (
+				#{item.id,jdbcType=VARCHAR}, #{item.tagType,jdbcType=TINYINT},
+				#{item.sourceUrl,jdbcType=VARCHAR},#{item.directionX,jdbcType=VARCHAR}, 
+				#{item.directionY,jdbcType=VARCHAR}, #{item.duration,jdbcType=VARCHAR},
+				#{item.size,jdbcType=REAL},
+				#{item.isLeft,jdbcType=TINYINT}, #{item.text,jdbcType=LONGVARCHAR})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.auais.note.pojo.ImageTag">
+		insert into t_image_tag
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="tagType != null">
+				tagType,
+			</if>
+			<if test="sourceUrl != null">
+				sourceUrl,
+			</if>
+			<if test="directionX != null">
+				directionX,
+			</if>
+			<if test="directionY != null">
+				directionY,
+			</if>
+			<if test="duration != null">
+				duration,
+		        </if>
+		        <if test="size != null" >
+		        	size,
+			</if>
+			<if test="isLeft != null">
+				isLeft,
+			</if>
+			<if test="text != null">
+				text,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="tagType != null">
+				#{tagType,jdbcType=TINYINT},
+			</if>
+			<if test="sourceUrl != null">
+				#{sourceUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="directionX != null">
+				#{directionX,jdbcType=VARCHAR},
+			</if>
+			<if test="directionY != null">
+				#{directionY,jdbcType=VARCHAR},
+			</if>
+			<if test="duration != null">
+				#{duration,jdbcType=VARCHAR},
+			</if>
+		      	<if test="size != null" >
+		        	#{size,jdbcType=REAL},
+		      	</if>
+			<if test="isLeft != null">
+				#{isLeft,jdbcType=TINYINT},
+			</if>
+			<if test="text != null">
+				#{text,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.auais.note.pojo.ImageTag">
+		update t_image_tag
+		<set>
+			<if test="tagType != null">
+				tagType = #{tagType,jdbcType=TINYINT},
+			</if>
+			<if test="sourceUrl != null">
+				sourceUrl = #{sourceUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="directionX != null">
+				directionX = #{directionX,jdbcType=VARCHAR},
+			</if>
+			<if test="directionY != null">
+				directionY = #{directionY,jdbcType=VARCHAR},
+			</if>
+			<if test="duration != null">
+				duration = #{duration,jdbcType=VARCHAR},
+			</if>
+		        <if test="size != null" >
+		        	size = #{size,jdbcType=REAL},
+		        </if>
+			<if test="isLeft != null">
+				isLeft = #{isLeft,jdbcType=TINYINT},
+			</if>
+			<if test="text != null">
+				text = #{text,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.auais.note.pojo.ImageTag">
+		update t_image_tag
+		set tagType = #{tagType,jdbcType=TINYINT},
+		sourceUrl = #{sourceUrl,jdbcType=VARCHAR},
+		directionX = #{directionX,jdbcType=VARCHAR},
+		directionY = #{directionY,jdbcType=VARCHAR},
+		duration = #{duration,jdbcType=VARCHAR},
+     		size = #{size,jdbcType=REAL},
+		isLeft = #{isLeft,jdbcType=TINYINT},
+		text = #{text,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.auais.note.pojo.ImageTag">
+		update t_image_tag
+		set tagType = #{tagType,jdbcType=TINYINT},
+		sourceUrl = #{sourceUrl,jdbcType=VARCHAR},
+		directionX = #{directionX,jdbcType=VARCHAR},
+		directionY = #{directionY,jdbcType=VARCHAR},
+		duration = #{duration,jdbcType=VARCHAR},
+		size = #{size,jdbcType=REAL},
+		isLeft = #{isLeft,jdbcType=TINYINT}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

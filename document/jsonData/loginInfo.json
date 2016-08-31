@@ -1,0 +1,150 @@
+jsonpCallback({
+ 	id:"19900101",
+ 	userName:"大红",
+ 	userHeadPicUrl:"http://localhost:8081/shareWeb/images/lufei.jpg",
+ 	shareType:"content",
+ 	needPassword:true,
+ 	type:"1",
+ 	content:{
+	 	"id":"1111",
+	 	"name": "长文名称之插画",
+	 	"syncTimestamp": "2016-04-26T08:29:18.476Z",
+	 	"modifiyLock": false,
+	 	"creatAt": "2016-04-26T08:29:18.476Z",
+	 	"updateAt": "2016-04-26T08:29:18.476Z",
+	 	"modifiyTimestamp":"2016-04-26T08:29:18.476Z",
+	 	"items": [{
+			"id" : "11111",
+	 		"location":"1",
+	 		"modifiyLock": false,
+	 		"syncTimestamp":"2016-04-26T08:29:18.476Z",
+	 		"modifiyTimestamp":"2016-04-26T08:29:18.476Z",
+	 		"creatAt": "2016-04-26T08:29:18.476Z",
+	 		"updateAt": "2016-04-26T08:29:18.476Z",
+	 		"type":"text",
+	 		"text": "红网邵东7月15日讯（通讯员成世德）高速上爆胎，应迅速停靠在应急车道，拨打救援电话，并在车辆后面150米外摆好三角警示牌，司乘人员则站在护栏外等待救援。可衡邵高速上有个司机，没找到三角警示牌，竟然把关着小狗的笼子拎出来，让小狗充当警示牌。巡逻交警发现后，先借他警示牌，再按规处罚。"
+	 	},{
+	 		"id" : "11112",
+	 		"location":"2",
+	 		"modifiyLock": false,
+	 		"syncTimestamp":"2016-04-26T08:29:18.476Z",
+	 		"modifiyTimestamp":"2016-04-26T08:29:18.476Z",
+	 		"creatAt": "2016-04-26T08:29:18.476Z",
+	 		"updateAt": "2016-04-26T08:29:18.476Z",
+	 		"type":"pic",
+	 		"pics":[{
+	 			"id":1,
+	 			"url":"http://localhost:8081/shareWeb/images/zhiling7.jpg",
+	 			"name":"sss",
+	 			"notes":[{
+	 				"type":"text",
+	 				"left":true,
+	 				"content":"这是第一个文字显示框",
+	 				"url":"",
+	 				"locationx":"20%",
+	 				"locationy":"20%"
+	 			},{
+	 				"type":"pic",
+	 				"left":true,
+	 				"content":"",
+	 				"url":"http://localhost:8081/shareWeb/images/lufei.jpg",
+	 				"locationx":"50%",
+	 				"locationy":"50%"
+	 			},{
+	 				"type":"voice",
+	 				"left":true,
+	 				"length":"45",
+	 				"content":"",
+	 				"url":"http://localhost:8081/shareWeb/doc/langjitianya.mp3",
+	 				"locationx":"40%",
+	 				"locationy":"40%"
+	 			}]
+	 		},{
+	 			"id":2,
+	 			"url":"http://localhost:8081/shareWeb/images/zhiling5.jpg",
+	 			"name":"aaa",
+	 			"notes":[{
+	 				"type":"text",
+	 				"left":true,
+	 				"content":"这是第一个文字显示框",
+	 				"url":"",
+	 				"locationx":"60%",
+	 				"locationy":"10%"
+	 			},{
+	 				"type":"pic",
+	 				"left":true,
+	 				"content":"",
+	 				"url":"http://localhost:8081/shareWeb/images/lufei.jpg",
+	 				"locationx":"30%",
+	 				"locationy":"70%"
+	 			}]
+	 		},{
+	 			"id":3,
+	 			"url":"http://localhost:8081/shareWeb/images/my3.jpg",
+	 			"name":"ddd",
+	 			"notes":[{
+	 				"type":"text",
+	 				"left":true,
+	 				"content":"这是第一个文字显示框",
+	 				"url":"",
+	 				"locationx":"0%",
+	 				"locationy":"90%"
+	 			},{
+	 				"type":"pic",
+	 				"left":true,
+	 				"content":"",
+	 				"url":"http://localhost:8081/shareWeb/images/lufei.jpg",
+	 				"locationx":"20%",
+	 				"locationy":"20%"
+	 			}]
+	 		},{
+	 			"id":4,
+	 			"url":"http://localhost:8081/shareWeb/images/zhiling6.jpg",
+	 			"name":"ddd",
+	 			"notes":[]
+	 		}]
+	 	},{
+	 		"id" : "11113",
+	 		"location":"2",
+	 		"modifiyLock": false,
+	 		"syncTimestamp":"2016-04-26T08:29:18.476Z",
+	 		"modifiyTimestamp":"2016-04-26T08:29:18.476Z",
+	 		"creatAt": "2016-04-26T08:29:18.476Z",
+	 		"updateAt": "2016-04-26T08:29:18.476Z",
+	 		"type":"voice",
+			"url":"http://localhost:8081/shareWeb/doc/jiaxingseng.mp3",
+			"name":"音频",
+			"notes":[{
+				"type":"text",
+				"content":"第一段语音",
+				"url":"",
+				"time":"00:10"
+			},{
+				"type":"pic",
+				"content":"第二段语音",
+				"url":"",
+				"time":"00:30"
+			},{
+				"type":"pic",
+				"content":"红网邵东7月15日讯",
+				"url":"",
+				"time":"00:50"
+			},{
+				"type":"pic",
+				"content":"第4段语音",
+				"url":"",
+				"time":"01:20"
+			},{
+				"type":"pic",
+				"content":"第5段语音",
+				"url":"",
+				"time":"02:20"
+			},{
+				"type":"pic",
+				"content":"第6段语音",
+				"url":"",
+				"time":"09:20"
+			}]
+		}]
+	}
+})

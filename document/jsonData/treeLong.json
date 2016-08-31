@@ -1,0 +1,73 @@
+jsonpCallback({
+ 	"id": "0",
+    "userId":"57356a291532bc0065385641",
+ 	"name": "插画",
+ 	"syncTimestamp": "2016-04-26T08:29:18.476Z",
+ 	"modifiyLock": false,
+ 	"items": [{
+ 		"id": "1",
+ 		"name": "一级目录节点1",
+ 		"type": "node",
+ 		"items": [{
+ 			"id": "11",
+ 			"name": "示例长文",
+ 			"type": "content",
+ 			"items": "571f26def38c84005974f0f5"
+ 		}]
+ 	}, {
+ 		"id": "2",
+ 		"name": "小小",
+ 		"type": "content",
+ 		"items": "571f26def38c84005974f0f5"
+ 	},{
+ 		"id": "21",
+ 		"name": "牛头",
+ 		"type": "content",
+ 		"items": "571f26def38c84005974f0f5"
+ 	}, {
+ 		"id": "3",
+ 		"name": "一级目录节点3",
+ 		"type": "node",
+ 		"items": [{
+ 			"id": "20",
+ 			"name": "二级目录节点",
+ 			"type": "node",
+ 			"items": [{
+ 				"id": "200",
+ 				"name": "三级目录节点",
+ 				"type": "content",
+ 				"items": "sss"
+ 			}, {
+ 				"id": "201",
+ 				"name": "三级目录节点",
+ 				"type": "node",
+ 				"items": [{
+ 					"id": "2010",
+ 					"name": "四级目录节点",
+ 					"type": "node",
+ 					"items": [{
+ 						"id": "20100",
+ 						"name": "五级目录节点",
+ 						"type": "node",
+ 						"items": [{
+ 							"id": "201001",
+ 							"name": "五级目录节点下的长文",
+ 							"type": "content",
+ 							"items": "571f26def38c84005974f0f5"
+ 						}]}
+ 					]
+ 				}, {
+ 					"id": "2011",
+ 					"name": "四级目录节点",
+ 					"type": "node",
+ 					"items": [{
+ 						"id": "20110",
+ 						"name": "四级目录节点下的长文",
+ 						"type": "content",
+ 						"items": "571f26def38c84005974f0f5"
+ 					}]
+ 				}]
+ 			}]
+ 		}]
+ 	}] 
+ })

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auais.note.dao.SourceMapper">
+	<resultMap id="BaseResultMap" type="com.auais.note.pojo.Source">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="userId" property="userId" jdbcType="VARCHAR" />
+		<result column="soruceId" property="soruceId" jdbcType="VARCHAR" />
+		<result column="size" property="size" jdbcType="REAL" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userId, soruceId, size
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_source
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectListByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		 from t_source
+		where userId = #{userId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from t_source
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteListByIds" parameterType="java.lang.Integer">
+		delete from t_source where id in
+		<foreach item="item" index="index" collection="list" open="(" close=")" separator=",">
+			#{item.id,jdbcType=VARCHAR}
+		</foreach>
+	</delete>
+	<insert id="insert" parameterType="com.auais.note.pojo.Source">
+		insert into t_source (id, userId, soruceId, size)
+		values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR},
+				#{soruceId,jdbcType=VARCHAR}, #{size,jdbcType=REAL})
+	</insert>
+	<insert id="batchInsert" parameterType="com.auais.note.pojo.Source">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			insert into t_source (id, userId, soruceId, size)
+			values (#{item.id,jdbcType=INTEGER}, #{item.userId,jdbcType=VARCHAR},
+					#{item.soruceId,jdbcType=VARCHAR},#{item.size,jdbcType=REAL})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.auais.note.pojo.Source">
+		insert into t_source
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				userId,
+			</if>
+			<if test="soruceId != null">
+				soruceId,
+			</if>
+			<if test="size != null">
+				size,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="soruceId != null">
+				#{soruceId,jdbcType=VARCHAR},
+			</if>
+			<if test="size != null">
+				#{size,jdbcType=REAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.auais.note.pojo.Source">
+		update t_source
+		<set>
+			<if test="userId != null">
+				userId = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="soruceId != null">
+				soruceId = #{soruceId,jdbcType=VARCHAR},
+			</if>
+			<if test="size != null">
+				size = #{size,jdbcType=REAL},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.auais.note.pojo.Source">
+		update t_source
+		set userId = #{userId,jdbcType=VARCHAR},
+		soruceId = #{soruceId,jdbcType=VARCHAR},
+		size = #{size,jdbcType=REAL}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

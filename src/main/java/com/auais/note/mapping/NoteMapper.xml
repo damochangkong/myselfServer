@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.auais.note.dao.NoteMapper">
+	<resultMap id="BaseResultMap" type="com.auais.note.pojo.Note">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="userId" property="userId" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="createAt" property="createAt" jdbcType="TIMESTAMP" />
+		<result column="updateAt" property="updateAt" jdbcType="TIMESTAMP" />
+		<result column="syncTimestamp" property="syncTimestamp"
+			jdbcType="TIMESTAMP" />
+		<result column="modifyFlag" property="modifyFlag" jdbcType="TINYINT" />
+		<result column="deleteFlag" property="deleteFlag" jdbcType="TINYINT" />
+		<result column="deviceId" property="deviceId" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.auais.note.pojo.Note"
+		extends="BaseResultMap">
+		<result column="childIds" property="childIds" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userId, name, createAt, updateAt, syncTimestamp, modifyFlag,
+		deleteFlag, deviceId
+	</sql>
+	<sql id="Blob_Column_List">
+		childIds
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_note
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectNoteListByUserId" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_note
+		where userId = #{userId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from t_note
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.auais.note.pojo.Note">
+		insert into t_note (id, userId, name,
+		createAt, updateAt, syncTimestamp,
+		modifyFlag, deleteFlag, deviceId,
+		childIds)
+		values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, #{syncTimestamp,jdbcType=TIMESTAMP},
+		#{modifyFlag,jdbcType=TINYINT}, #{deleteFlag,jdbcType=TINYINT},
+		#{deviceId,jdbcType=VARCHAR},
+		#{childIds,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="batchInsert" parameterType="com.auais.note.pojo.Note">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			insert into t_note (
+				id, userId, name,
+				createAt, updateAt, syncTimestamp,
+				modifyFlag, deleteFlag, deviceId,
+				childIds)
+			values (
+				#{item.id,jdbcType=VARCHAR}, #{item.userId,jdbcType=VARCHAR},#{item.name,jdbcType=VARCHAR},
+				#{item.createAt,jdbcType=TIMESTAMP}, #{item.updateAt,jdbcType=TIMESTAMP}, 
+				#{item.syncTimestamp,jdbcType=TIMESTAMP},
+				#{item.modifyFlag,jdbcType=TINYINT}, #{item.deleteFlag,jdbcType=TINYINT},
+				#{item.deviceId,jdbcType=VARCHAR},#{item.childIds,jdbcType=LONGVARCHAR})
+		</foreach>
+	</insert>
+	<insert id="insertSelective" parameterType="com.auais.note.pojo.Note">
+		insert into t_note
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				userId,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="createAt != null">
+				createAt,
+			</if>
+			<if test="updateAt != null">
+				updateAt,
+			</if>
+			<if test="syncTimestamp != null">
+				syncTimestamp,
+			</if>
+			<if test="modifyFlag != null">
+				modifyFlag,
+			</if>
+			<if test="deleteFlag != null">
+				deleteFlag,
+			</if>
+			<if test="deviceId != null">
+				deviceId,
+			</if>
+			<if test="childIds != null">
+				childIds,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="createAt != null">
+				#{createAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateAt != null">
+				#{updateAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimestamp != null">
+				#{syncTimestamp,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyFlag != null">
+				#{modifyFlag,jdbcType=TINYINT},
+			</if>
+			<if test="deleteFlag != null">
+				#{deleteFlag,jdbcType=TINYINT},
+			</if>
+			<if test="deviceId != null">
+				#{deviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="childIds != null">
+				#{childIds,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.auais.note.pojo.Note">
+		update t_note
+		<set>
+			<if test="userId != null">
+				userId = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="createAt != null">
+				createAt = #{createAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateAt != null">
+				updateAt = #{updateAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="syncTimestamp != null">
+				syncTimestamp = #{syncTimestamp,jdbcType=TIMESTAMP},
+			</if>
+			<if test="modifyFlag != null">
+				modifyFlag = #{modifyFlag,jdbcType=TINYINT},
+			</if>
+			<if test="deleteFlag != null">
+				deleteFlag = #{deleteFlag,jdbcType=TINYINT},
+			</if>
+			<if test="deviceId != null">
+				deviceId = #{deviceId,jdbcType=VARCHAR},
+			</if>
+			<if test="childIds != null">
+				childIds = #{childIds,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.auais.note.pojo.Note">
+		update t_note
+		set userId = #{userId,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		createAt = #{createAt,jdbcType=TIMESTAMP},
+		updateAt = #{updateAt,jdbcType=TIMESTAMP},
+		syncTimestamp = #{syncTimestamp,jdbcType=TIMESTAMP},
+		modifyFlag = #{modifyFlag,jdbcType=TINYINT},
+		deleteFlag = #{deleteFlag,jdbcType=TINYINT},
+		deviceId = #{deviceId,jdbcType=VARCHAR},
+		childIds = #{childIds,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.auais.note.pojo.Note">
+		update t_note
+		set userId = #{userId,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		createAt = #{createAt,jdbcType=TIMESTAMP},
+		updateAt = #{updateAt,jdbcType=TIMESTAMP},
+		syncTimestamp = #{syncTimestamp,jdbcType=TIMESTAMP},
+		modifyFlag = #{modifyFlag,jdbcType=TINYINT},
+		deleteFlag = #{deleteFlag,jdbcType=TINYINT},
+		deviceId = #{deviceId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="batchUpdate" parameterType="com.auais.note.pojo.Note">
+		<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+			update t_note
+			set userId = #{item.userId,jdbcType=VARCHAR},
+				name = #{item.name,jdbcType=VARCHAR},
+				createAt = #{item.createAt,jdbcType=TIMESTAMP},
+				updateAt = #{item.updateAt,jdbcType=TIMESTAMP},
+				syncTimestamp = #{item.syncTimestamp,jdbcType=TIMESTAMP},
+				modifyFlag = #{item.modifyFlag,jdbcType=TINYINT},
+				deleteFlag = #{item.deleteFlag,jdbcType=TINYINT},
+				deviceId = #{item.deviceId,jdbcType=VARCHAR}
+			where id = #{item.id,jdbcType=VARCHAR}
+		</foreach>
+	</update>
+</mapper>
