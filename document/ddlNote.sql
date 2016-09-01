@@ -108,6 +108,7 @@ create table t_user (
 	mobile varchar(22) null COMMENT '用户手机号',
 	email varchar(255) not null COMMENT '用户邮箱',
 	status TINYINT null default 0 COMMENT '用戶状态，1,激活，0未激活',
+	deviceId VARCHAR(255) not null COMMENT '设备ID',
 	createAt TIMESTAMP null DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
 	loginCount integer null COMMENT '登录次数',
 	loginTime TIMESTAMP null COMMENT '登录时间',

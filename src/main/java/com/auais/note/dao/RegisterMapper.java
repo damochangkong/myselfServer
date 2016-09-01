@@ -11,6 +11,8 @@ public interface RegisterMapper {
     int insertSelective(Register record);
 
     Register selectByPrimaryKey(Integer id);
+    
+    Register selectByUserName(String userName);
 
     int updateByPrimaryKeySelective(Register record);
 

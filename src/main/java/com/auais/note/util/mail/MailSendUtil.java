@@ -7,8 +7,6 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.log4j.Logger;
 
-import com.mysql.jdbc.StringUtils;
-
 
 /**
  * 邮件发送工具实现类
@@ -39,13 +37,23 @@ public class MailSendUtil {
 		//生成验证码
 		//(int) (Math.random() * 22)+5产生的是5-26的随机数
 		int randomN = (int) (Math.random() * 900000 + 100000);
-		mail.setReceiver(receiverEmail);
-		mail.setMessage(mail.getMessage() + randomN);
+		logger.info("-----------------验证码是：+"+randomN);
+		MailDto mailTemp = null;
+		try {
+			mailTemp = (MailDto)mail.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			resultMap.put("code", "2222");
+			resultMap.put("message2", "類型轉換錯誤！");
+		}
+		mailTemp.setReceiver(receiverEmail);
+		mailTemp.setMessage(mail.getMessage() + randomN);
 		resultMap.put("smsCode", String.valueOf(randomN));
-		if(send(mail)){
+		if(send(mailTemp)){
 			resultMap.put("code", "0000");
 		}else{
 			resultMap.put("code", "1111");
+			resultMap.put("message2", "邮件发送失败，请确认邮箱是否正确");
 		}
 		return resultMap;
 	}

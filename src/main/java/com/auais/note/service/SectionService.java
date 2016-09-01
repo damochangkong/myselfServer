@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.auais.note.dto.SectionDto;
 import com.auais.note.dto.inter.CommonFullNote;
-import com.auais.note.pojo.Source;
 
 public interface SectionService {
 
@@ -15,7 +14,7 @@ public interface SectionService {
 	
 	List<SectionDto> selectListByUserId(String userId);
 	
-	int saveSectionList(List<SectionDto> sections,String userId,Date syncTime) throws Exception;
+	int uploadSaveSectionList(List<SectionDto> sections,String userId,Date syncTime) throws Exception;
 	
 	void clearSectionAndSource(CommonFullNote reqNote);
 	

@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.collections.ListUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +13,6 @@ import com.auais.note.dao.SectionMapper;
 import com.auais.note.dto.SectionDto;
 import com.auais.note.dto.inter.CommonFullNote;
 import com.auais.note.pojo.SectionWithBLOBs;
-import com.auais.note.pojo.Source;
 import com.auais.note.service.AudioService;
 import com.auais.note.service.ImageService;
 import com.auais.note.service.ImageTagService;
@@ -37,7 +35,7 @@ public class SectionServiceImpl implements SectionService {
 	/**
 	 * 批量保存section信息
 	 * */
-	public int saveSectionList(List<SectionDto> sections,String userId,Date syncTime) throws Exception{
+	public int uploadSaveSectionList(List<SectionDto> sections,String userId,Date syncTime) throws Exception{
 		if(null==sections || sections.size()==0){
 			return 0;
 		}

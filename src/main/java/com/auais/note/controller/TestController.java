@@ -207,7 +207,7 @@ public class TestController extends BaseController{
 		long userId = userServiceImpl.selectMaxUserId();
 		userId = userId==0?AuaisConstans.INIT_USERID:(userId+1);
 		user.setUserId(userId);
-		int res = this.userServiceImpl.insert(user);
+		int res = this.userServiceImpl.refreshUser(user);
 		User tableUser = null;
 		if(res == 0){
 			resultMap.put("code", "4001");

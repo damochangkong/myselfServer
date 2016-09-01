@@ -7,6 +7,8 @@
   
   <body>
   
+  	<div class="box" onclick="validateEmail()">validateEmail</div>
+  	<br/>
   	<div class="box" onclick="register()">register</div>
   	<br/>
   	<div class="box" onclick="login()">login</div>
@@ -38,8 +40,8 @@
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
-	        	userId: "10001",
-	   			signature:"6445e79f898460811e321f8a82888273"
+	        	userName: "3403078944@qq.com",
+	   			token:"cd400527a7b921ec8c0a7a0aed3ec518"
 	        },
 	        success: function (jsonResult) {
 	            console.log(jsonResult);
@@ -54,10 +56,8 @@
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
-	        	userId: "dafenggang",
-	    		password:"123456",
-	   			deviceId :"11111122222",
-	   			signature:"6445e79f898460811e321f8a82888273"
+	        	userName: "370277258@qq.com",//3403078944@qq.com 776301579
+	    		password:"123456"
 	        },
 	        success: function (jsonResult) {
 	            console.log(jsonResult);
@@ -72,9 +72,9 @@
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
-	        	userName: "776301577@qq.com",
-        		password:"aa",
-       			deviceId :"6445e79f898460811e321f8a82888273"
+	        	userName: "370277258@qq.com",
+        		password:"123456",
+       			deviceId :"6445e79f898460811e321f8a8288827a"
 	        },
 	        success: function (jsonResult) {
 	            console.log(jsonResult);
@@ -82,6 +82,23 @@
 	    });
 	}
 
+	function validateEmail() {
+	    $.ajax({
+	        type: "POST",
+	        url: "http://localhost:8080/spiderNote/login/validateEmail",
+	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
+	        dataType: "json", //	表示返回值类型，不必须
+	        data: {
+	        	userName: "370277258@qq.com",
+        		smsCode:"618703"
+	        },
+	        success: function (jsonResult) {
+	            console.log(jsonResult);
+	        }
+	    });
+	}
+	
+	
 	function postSimpleData() {
 	    $.ajax({
 	        type: "POST",

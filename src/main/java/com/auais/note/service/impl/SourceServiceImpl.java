@@ -39,7 +39,7 @@ public class SourceServiceImpl {
 	 * 
 	 * */
 	@SuppressWarnings("unchecked")
-	public void updateSourceAfterUpload(String userId){
+	public void uploadUpdateSourceAfterUpload(String userId){
 		List<Source> newList = this.organizeSourceByUserId(userId);
 		List<Source> oldList = this.sourceMapper.selectListByUserId(userId);
 		//已经被删除的

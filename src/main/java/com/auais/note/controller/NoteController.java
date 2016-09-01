@@ -56,7 +56,7 @@ public class NoteController extends BaseController{
 	 * */
 	@ResponseBody
 	@RequestMapping(value="/syncProjects", produces = "text/html;charset=UTF-8")
-	public String syncProjects(String projectInfo,String token,
+	public String syncProjects(String projectInfo,@RequestParam("token") String token,
 			HttpServletRequest request,HttpServletResponse response,Model model){
 		response.setCharacterEncoding("UTF-8"); //设置编码格式
 		response.setHeader("Access-Control-Allow-Origin", "*");
@@ -87,12 +87,12 @@ public class NoteController extends BaseController{
 			syncResponse.setMessage("参数问题："+res.get("message"));
 			return gson.toJson(syncResponse);
 		}
-//		boolean flag = TokenUtil.validateToken(token, Long.valueOf(syncRequest.getUserId()));
-//		if(!flag){
-//			syncResponse.setCode("1004");
-//			syncResponse.setMessage("token已经失效，请重新登录");
-//			return gson.toJson(syncResponse);
-//		}
+		boolean flag = TokenUtil.validateToken(token, Long.valueOf(syncRequest.getUserId()));
+		if(!flag){
+			syncResponse.setCode("1004");
+			syncResponse.setMessage("token已经失效，请重新登录");
+			return gson.toJson(syncResponse);
+		}
 		//如果处于锁定状态，直接返回，请客户端等待再上传
 		boolean isLocked = lockService.isLocked(syncRequest.getUserId(), syncRequest.getDeviceId());
 		if(isLocked){
@@ -146,7 +146,7 @@ public class NoteController extends BaseController{
 	
 	@ResponseBody
 	@RequestMapping(value="/uploadProjects", produces = "text/html;charset=UTF-8")
-	public String uploadProjects(String projectInfo,String token,
+	public String uploadProjects(String projectInfo,@RequestParam("token") String token,
 			HttpServletRequest request,HttpServletResponse response,Model model){
 		response.setCharacterEncoding("UTF-8"); //设置编码格式
 		response.setHeader("Access-Control-Allow-Origin", "*");
@@ -184,13 +184,13 @@ public class NoteController extends BaseController{
 			return gson.toJson(uploadResponse);
 		}
 		//token校验
-//		boolean flag = TokenUtil.validateToken(token, Long.valueOf(uploadRequest.getUserId()));
-//		if(!flag){
-//			uploadResponse.setCode("1004");
-//			uploadResponse.setMessage("token已经失效，请重新登录");
-//			lockService.deleteLock(uploadRequest.getUserId(), uploadRequest.getDeviceId());
-//			return gson.toJson(uploadResponse);
-//		}
+		boolean flag = TokenUtil.validateToken(token, Long.valueOf(uploadRequest.getUserId()));
+		if(!flag){
+			uploadResponse.setCode("1004");
+			uploadResponse.setMessage("token已经失效，请重新登录");
+			lockService.deleteLock(uploadRequest.getUserId(), uploadRequest.getDeviceId());
+			return gson.toJson(uploadResponse);
+		}
 		//如果处于锁定状态，直接返回，请客户端等待再上传
 		boolean isLocked = lockService.hasHoldLock(uploadRequest.getUserId(), uploadRequest.getDeviceId());
 		if(!isLocked){
@@ -204,7 +204,7 @@ public class NoteController extends BaseController{
 		UploadResponseSection sectionInfo = new UploadResponseSection();
 		try {
 			List<SectionDto> sections = uploadRequest.getSections();
-			this.sectionService.saveSectionList(sections, uploadRequest.getUserId(),syncTime);
+			this.sectionService.uploadSaveSectionList(sections, uploadRequest.getUserId(),syncTime);
 			sectionInfo.setSyncTimestamp(syncTime);
 		} catch (Exception e) {
 			sectionInfo.setCode("1007");
@@ -234,7 +234,7 @@ public class NoteController extends BaseController{
 		System.out.println(gson.toJson(uploadResponse));
 		//3.整理流量表
 		try {
-			this.sourceServiceImpl.updateSourceAfterUpload(uploadRequest.getUserId());
+			this.sourceServiceImpl.uploadUpdateSourceAfterUpload(uploadRequest.getUserId());
 		} catch (Exception e) {
 			uploadResponse.setCode("1009");
 			uploadResponse.setMessage("整理流量表出错");
@@ -306,7 +306,7 @@ public class NoteController extends BaseController{
 	@RequestMapping(value="/organizeSource", produces = "text/html;charset=UTF-8")
 	public String organizeSource(
 			HttpServletRequest request,HttpServletResponse response,Model model){
-		this.sourceServiceImpl.updateSourceAfterUpload("user0001");
+		this.sourceServiceImpl.uploadUpdateSourceAfterUpload("user0001");
 		return "{'flag':'success'}";
 	}
 	

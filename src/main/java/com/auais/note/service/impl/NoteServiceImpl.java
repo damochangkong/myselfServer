@@ -191,7 +191,7 @@ public class NoteServiceImpl implements NoteService{
 		resNote.setCode("0000");
 		//保存段落
 		try {
-			this.sectionService.saveSectionList(reqNote.getSections(), userId, syncTime);
+			this.sectionService.uploadSaveSectionList(reqNote.getSections(), userId, syncTime);
 		} catch (Exception e) {
 			resNote.setCode("1001");
 			resNote.setMessage("保存段落发生异常");

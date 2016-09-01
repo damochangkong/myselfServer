@@ -10,18 +10,8 @@ public interface UserMapper {
     int insertSelective(User record);
 
     User selectByPrimaryKey(Long userId);
-    
-    User selectByUserName(String userName);
-    
-    User selectByEmailOrPhone(User record);
-    
-    User selectByUserNameAndPass(User record);
 
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-    
-    User selectMaxUserId();
-    
-    int updateStatusByUserName(User record);
 }

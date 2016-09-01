@@ -69,10 +69,10 @@ public class TokenUtil {
 	 *            参数
 	 * @return boolean 返回类型
 	 */
-	public static boolean validateToken(String signature, long id) {
+	public static boolean validateToken(String token, long id) {
 		boolean flag = false;
-		Token token = (Token) tokenMap.get(id);
-		if (token != null && token.getSignature().equals(signature)) {
+		Token _token = (Token) tokenMap.get(id);
+		if (_token != null && _token.getSignature().equals(token)) {
 			logger.info("\n=====已在线=======");
 			flag = true;
 		}

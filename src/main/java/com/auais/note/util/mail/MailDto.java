@@ -1,12 +1,10 @@
 package com.auais.note.util.mail;
-import java.io.Serializable;
 
 /**
  * Mail Ù–‘ µÃÂ
  * 
  */
-@SuppressWarnings("serial")
-public class MailDto implements Serializable {
+public class MailDto implements Cloneable {
 
 	public static final String ENCODEING = "UTF-8";
 	
@@ -90,4 +88,9 @@ public class MailDto implements Serializable {
 		this.message = message;
 	}
 
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
+	
 }

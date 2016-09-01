@@ -25,37 +25,6 @@
     from t_user
     where userId = #{userId,jdbcType=BIGINT}
   </select>
-  <select id="selectMaxUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
-   	  select max(userId) as userId from t_user
-  </select>
-  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
-   	  select 
-   	  <include refid="Base_Column_List" />
-   	    from t_user
-       where userName = #{userName,jdbcType=VARCHAR}
-  </select>
-  <select id="selectByUserNameAndPass" resultMap="BaseResultMap" parameterType="java.lang.String" >
-   	  select 
-   	  <include refid="Base_Column_List" />
-   	    from t_user
-       where 1=1
-         and (userName = #{userName,jdbcType=VARCHAR}
-       	  or mobile = #{userName,jdbcType=VARCHAR}
-       	  or email = #{userName,jdbcType=VARCHAR})
-         and password = #{password,jdbcType=VARCHAR}
-  </select>
-  <select id="selectByEmailOrPhone" resultMap="BaseResultMap" parameterType="java.lang.String" >
-   	  select 
-		<include refid="Base_Column_List" />
-		from t_user
-       where 1=1
-      <if test="mobile != null" >
-          and mobile = #{mobile,jdbcType=VARCHAR}
-      </if>
-      <if test="email != null" >
-          and email = #{email,jdbcType=VARCHAR}
-      </if>
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from t_user
     where userId = #{userId,jdbcType=BIGINT}
@@ -205,10 +174,4 @@
       lastLoginTime = #{lastLoginTime,jdbcType=TIMESTAMP}
     where userId = #{userId,jdbcType=BIGINT}
   </update>
-  <update id="updateStatusByUserName" parameterType="com.auais.note.pojo.User" >
-    update t_user
-       set status = #{status,jdbcType=TINYINT}
-     where userName = #{userName,jdbcType=VARCHAR}
-  </update>
-  
 </mapper>

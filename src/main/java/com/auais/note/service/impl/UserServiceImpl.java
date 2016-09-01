@@ -1,5 +1,7 @@
 package com.auais.note.service.impl;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -58,8 +60,15 @@ public class UserServiceImpl {
 	 * 按照用户名查询记录
 	 * 
 	 * */
-	public int insert(User user){
-		return userMapper.insert(user);
+	public int refreshUser(User user){
+		user.setCreateAt(new Date());
+		User tableUser = userMapper.selectByUserName(user.getUserName());
+		if(null==tableUser){
+			return userMapper.insert(user);
+		}else{
+			user.setUserId(tableUser.getUserId());
+			return userMapper.updateByPrimaryKey(user);
+		}
 	}
 	
 	/**
@@ -70,7 +79,30 @@ public class UserServiceImpl {
 		return userMapper.selectByPrimaryKey(userId);
 	}
 	
-	public int saveRegister(Register record){
-		return this.registerMapper.insert(record);
+	public int updateStatusByUserName(User user){
+		return userMapper.updateStatusByUserName(user);
 	}
+	
+	/**
+	 * 注册的第一步是插入注册表一条记录，或者更新里面的验证码为最新的
+	 * 
+	 * */
+	public int refreshRegister(Register record){
+		Register registerTemp = this.registerMapper.selectByUserName(record.getUserName());
+		if(null != registerTemp){
+			record.setId(registerTemp.getId());
+			return this.registerMapper.updateByPrimaryKey(record);
+		}else{
+			return this.registerMapper.insert(record);
+		}
+	}
+	
+	public Register selectRegisterByUserName(String userName){
+		return this.registerMapper.selectByUserName(userName);
+	}
+	
+	public int deleteRegisterByPrimaryKey(int id){
+		return this.registerMapper.deleteByPrimaryKey(id);
+	}
+	
 }
