@@ -37,7 +37,8 @@ public class MailSendUtil {
 		//生成验证码
 		//(int) (Math.random() * 22)+5产生的是5-26的随机数
 		int randomN = (int) (Math.random() * 900000 + 100000);
-		logger.info("-----------------验证码是：+"+randomN);
+		resultMap.put("smsCode", String.valueOf(randomN));
+		logger.info("-----------------验证码是："+randomN);
 		MailDto mailTemp = null;
 		try {
 			mailTemp = (MailDto)mail.clone();
@@ -48,7 +49,6 @@ public class MailSendUtil {
 		}
 		mailTemp.setReceiver(receiverEmail);
 		mailTemp.setMessage(mail.getMessage() + randomN);
-		resultMap.put("smsCode", String.valueOf(randomN));
 		if(send(mailTemp)){
 			resultMap.put("code", "0000");
 		}else{
@@ -93,10 +93,17 @@ public class MailSendUtil {
 	}
 	
 	public static void main(String[] args) {
-		//(int) (Math.random() * 22)+5产生的是5-26的随机数
-		//100000-999999
-		int randomN = (int) (Math.random() * 900000 + 100000);
-		System.out.println(randomN);
+		
+		MailDto mailTemp = new MailDto();
+		mailTemp.setHost("smtp.exmail.qq.com");
+		mailTemp.setReceiver("776301500@qq.com");
+		mailTemp.setSender("spidernote@root.zznote.cn");
+		mailTemp.setName("蜘蛛笔记");
+		mailTemp.setUsername("spidernote@root.zznote.cn");
+		mailTemp.setPassword("Abc325229%");
+		mailTemp.setSubject("蜘蛛笔记验证码");
+		mailTemp.setMessage("蜘蛛笔记注册验证码是：");
+		send(mailTemp);
 		
 	}
 

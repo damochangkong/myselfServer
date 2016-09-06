@@ -72,7 +72,7 @@
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
-	        	userName: "370277258@qq.com",
+	        	userName: "776301500@qq.com",
         		password:"123456",
        			deviceId :"6445e79f898460811e321f8a8288827a"
 	        },
@@ -89,8 +89,8 @@
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
-	        	userName: "370277258@qq.com",
-        		smsCode:"618703"
+	        	userName: "776301500@qq.com",
+        		smsCode:"563067"
 	        },
 	        success: function (jsonResult) {
 	            console.log(jsonResult);
