@@ -113,7 +113,7 @@ create table t_user (
 	loginCount integer null COMMENT '登录次数',
 	loginTime TIMESTAMP null COMMENT '登录时间',
 	lastLoginTime TIMESTAMP null COMMENT '上次登录时间'
-)
+);
 
 drop table if exists t_source;
 create table t_source (
