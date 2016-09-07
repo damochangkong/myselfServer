@@ -77,12 +77,12 @@ public class LoginController extends BaseController {
 			res = this.userServiceImpl.refreshUser(user);
 		} catch (Exception e) {
 			resultMap.put("code", "3001");
-			resultMap.put("message", "插入表失败");
+			resultMap.put("message", "创建用户失败");
 			return gson.toJson(resultMap);
 		}
 		if(res == 0){
 			resultMap.put("code", "3001");
-			resultMap.put("message", "插入表失败");
+			resultMap.put("message", "创建用户失败");
 			return gson.toJson(resultMap);
 		}
 		resultMap.put("message", "注册第一步通过");
@@ -119,7 +119,6 @@ public class LoginController extends BaseController {
 		Register register = this.userServiceImpl.selectRegisterByUserName(userName);
 		resultMap = this.validateSmsCodelegal(register, smsCode);
 		if(!StringUtils.equals(resultMap.get("code"), "0000")){
-			resultMap.put("code", "1007");
 			return gson.toJson(resultMap);
 		}
 		//修改user表中的状态为1
@@ -229,10 +228,6 @@ public class LoginController extends BaseController {
 		}
 		if(TokenUtil.validateToken(token, user.getUserId())){
 			TokenUtil.removeToken(user.getUserId());
-		}else{
-			resultMap.put("code", "1003");
-			resultMap.put("message", "token无效");
-			return gson.toJson(resultMap);
 		}
 		resultMap.put("message", "您已退出");
 		return gson.toJson(resultMap);
@@ -249,11 +244,11 @@ public class LoginController extends BaseController {
 		Date smsTime = register.getSmsTime();
 		long seconds = DateUtils.getDistanceTime(new Date(), smsTime);
 		if(seconds > 1800){
-			resultMap.put("code", "1001");
+			resultMap.put("code", "2001");
 			resultMap.put("message", "验证码已经失效");
 		}
 		if(!StringUtils.equals(register.getSmsCode(), smscode)){
-			resultMap.put("code", "1002");
+			resultMap.put("code", "2002");
 			resultMap.put("message", "验证码错误");
 		}
 		return resultMap;
