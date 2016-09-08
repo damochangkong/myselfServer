@@ -41,7 +41,7 @@
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
 	        	userName: "3403078944@qq.com",
-	   			token:"cd400527a7b921ec8c0a7a0aed3ec518"
+	   			token:"042e605a2327cd8a1e1443a2c928a0d3"
 	        },
 	        success: function (jsonResult) {
 	            console.log(jsonResult);
@@ -56,7 +56,7 @@
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
-	        	userName: "370277258@qq.com",//3403078944@qq.com 776301579
+	        	userName: "3403078944@qq.com",//3403078944@qq.com 776301579
 	    		password:"123456"
 	        },
 	        success: function (jsonResult) {
@@ -72,9 +72,9 @@
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
-	        	userName: "776301500@qq.com",
+	        	userName: "3403078944@qq.com",
         		password:"123456",
-       			deviceId :"6445e79f898460811e321f8a8288827a"
+       			deviceId :"6445e79f898460811e321f8a8288827b"
 	        },
 	        success: function (jsonResult) {
 	            console.log(jsonResult);
@@ -89,8 +89,8 @@
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
-	        	userName: "776301500@qq.com",
-        		smsCode:"827312"
+	        	userName: "3403078944@qq.com",
+        		smsCode:"472091"
 	        },
 	        success: function (jsonResult) {
 	            console.log(jsonResult);

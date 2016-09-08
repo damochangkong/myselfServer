@@ -227,8 +227,11 @@ public class LoginController extends BaseController {
 		}
 		if(TokenUtil.validateToken(token, user.getUserId())){
 			TokenUtil.removeToken(user.getUserId());
+			resultMap.put("message", "您已退出");
+		}else{
+			resultMap.put("code", "1003");
+			resultMap.put("message", "token已经失效");
 		}
-		resultMap.put("message", "您已退出");
 		return gson.toJson(resultMap);
 	}
 	
