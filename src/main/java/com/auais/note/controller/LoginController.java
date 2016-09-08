@@ -150,7 +150,7 @@ public class LoginController extends BaseController {
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		Map<String, String> resultMap = new HashMap<String, String>();
 		resultMap.put("code", "0000");
-		resultMap = this.validateLoginParam(userName, password);
+		resultMap = this.validateLoginParam(resultMap,userName, password);
 		if (!StringUtils.equals(resultMap.get("code"), "0000")) {
 			return gson.toJson(resultMap);
 		}
@@ -174,8 +174,7 @@ public class LoginController extends BaseController {
 	 * 校验登录的参数
 	 * 
 	 * **/
-	private Map<String,String> validateLoginParam(String userName,String password){
-		Map<String,String> resultMap = new HashMap<String,String>();
+	private Map<String,String> validateLoginParam(Map<String, String> resultMap,String userName,String password){
 		resultMap.put("code", "0000");
 		if (SqlCheckUtils.sqlInject(userName)) {
 			resultMap.put("code", "1001");
