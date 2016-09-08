@@ -94,17 +94,19 @@ public class MailSendUtil {
 	
 	public static void main(String[] args) {
 		
-		MailDto mailTemp = new MailDto();
-		mailTemp.setHost("smtp.exmail.qq.com");
-		mailTemp.setReceiver("776301500@qq.com");
-		mailTemp.setSender("spidernote@root.zznote.cn");
-		mailTemp.setName("蜘蛛笔记");
-		mailTemp.setUsername("spidernote@root.zznote.cn");
-		mailTemp.setPassword("Abc325229%");
-		mailTemp.setSubject("蜘蛛笔记验证码");
-		mailTemp.setMessage("蜘蛛笔记注册验证码是：");
-		send(mailTemp);
+//		MailDto mailTemp = new MailDto();
+//		mailTemp.setHost("smtp.exmail.qq.com");
+//		mailTemp.setReceiver("776301500@qq.com");
+//		mailTemp.setSender("spidernote@root.zznote.cn");
+//		mailTemp.setName("蜘蛛笔记");
+//		mailTemp.setUsername("spidernote@root.zznote.cn");
+//		mailTemp.setPassword("Abc325229%");
+//		mailTemp.setSubject("蜘蛛笔记验证码");
+//		mailTemp.setMessage("蜘蛛笔记注册验证码是：");
+//		send(mailTemp);
 		
+		
+		sendEmail("776301500@qq.com");
 	}
 
 }

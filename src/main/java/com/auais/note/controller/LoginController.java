@@ -117,7 +117,7 @@ public class LoginController extends BaseController {
 		resultMap.put("userId", String.valueOf(tableUser.getUserId()));
 		//去临时表中查找对应的记录，存在即通过
 		Register register = this.userServiceImpl.selectRegisterByUserName(userName);
-		resultMap = this.validateSmsCodelegal(register, smsCode);
+		resultMap = this.validateSmsCodelegal(resultMap,register, smsCode);
 		if(!StringUtils.equals(resultMap.get("code"), "0000")){
 			return gson.toJson(resultMap);
 		}
@@ -238,8 +238,7 @@ public class LoginController extends BaseController {
 	 * 
 	 * 
 	 * **/
-	private Map<String,String> validateSmsCodelegal(Register register,String smscode){
-		Map<String,String> resultMap = new HashMap<String,String>();
+	private Map<String,String> validateSmsCodelegal(Map<String,String> resultMap,Register register,String smscode){
 		resultMap.put("code", "0000");
 		Date smsTime = register.getSmsTime();
 		long seconds = DateUtils.getDistanceTime(new Date(), smsTime);
