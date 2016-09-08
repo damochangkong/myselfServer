@@ -58,7 +58,7 @@ public class LoginController extends BaseController {
 		userId = (userId==0)?AuaisConstans.INIT_USERID:(userId+1);
 		user.setUserId(userId);
 		//发送邮件验证码
-		resultMap = MailSendUtil.sendEmail(userName);
+		resultMap = MailSendUtil.sendEmail(resultMap,userName);
 		if(!StringUtils.equals(resultMap.get("code"), "0000")){
 			resultMap.put("code", "3003");
 			resultMap.put("message", "邮件发送失败，请确认邮箱是否正确");

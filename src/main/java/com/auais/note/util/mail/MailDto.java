@@ -16,7 +16,7 @@ public class MailDto implements Cloneable {
 	
 	private String name; // ∑¢º˛»ÀÍ«≥∆
 	
-	private String username; // ’À∫≈
+	private String userName; // ’À∫≈
 	
 	private String password; // √‹¬Î
 	
@@ -56,12 +56,12 @@ public class MailDto implements Cloneable {
 		this.name = name;
 	}
 	
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	public String getPassword() {
@@ -93,4 +93,17 @@ public class MailDto implements Cloneable {
 		return super.clone();
 	}
 	
+	@Override
+	public String toString() {
+		StringBuffer stringb = new StringBuffer();
+		stringb.append("host:").append(this.getHost()).append(",")
+			.append("sender:").append(this.getSender()).append(",")
+			.append("receiver:").append(this.getReceiver()).append(",")
+			.append("name:").append(this.getName()).append(",")
+			.append("userName:").append(this.getUserName()).append(",")
+			.append("password:").append(this.getPassword()).append(",")
+			.append("subject:").append(this.getSubject()).append(",")
+			.append("message:").append(this.getMessage()).append(",");
+		return stringb.toString();
+	}
 }

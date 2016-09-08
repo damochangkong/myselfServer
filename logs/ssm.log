@@ -1,2 +1,15 @@
 [INFO] [2016-09-08 11:23:21][com.auais.note.util.mail.MailSendUtil]-----------------验证码是：453223
 [INFO] [2016-09-08 11:23:23][com.auais.note.util.mail.MailSendUtil]spidernote@root.zznote.cn 发送邮件到 776301500@qq.com 成功
+[INFO] [2016-09-08 22:01:18][com.auais.note.util.mail.MailSendUtil]-----------------验证码是：769459
+[INFO] [2016-09-08 22:01:18][com.auais.note.util.mail.MailSendUtil]sendEmail mailTemp:host:smtp.exmail.qq.com,senderspidernote@root.zznote.cn,receiver776301500@qq.com,name蜘蛛笔记,userNamespidernote@root.zznote.cn,passwordAbc325229%,subject蜘蛛笔记验证码,message蜘蛛笔记注册验证码是：769459,
+[INFO] [2016-09-08 22:01:21][com.auais.note.util.mail.MailSendUtil]org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.exmail.qq.com:465
+[INFO] [2016-09-08 22:01:21][com.auais.note.util.mail.MailSendUtil]Sending the email to the following server failed : smtp.exmail.qq.com:465
+[INFO] [2016-09-08 22:01:21][com.auais.note.util.mail.MailSendUtil]spidernote@root.zznote.cn 发送邮件到 776301500@qq.com 失败
+[INFO] [2016-09-08 22:11:29][com.auais.note.util.mail.MailSendUtil]-----------------验证码是：469230
+[INFO] [2016-09-08 22:11:29][com.auais.note.util.mail.MailSendUtil]sendEmail mailTemp:host:smtp.exmail.qq.com,sender:blackspider@root.zznote.cn,receiver:776301500@qq.com,name:蜘蛛笔记,userName:blackspider@root.zznote.cn,password:Abc1234%,subject:蜘蛛笔记验证码,message:蜘蛛笔记注册验证码是：469230,
+[INFO] [2016-09-08 22:11:30][com.auais.note.util.mail.MailSendUtil]org.apache.commons.mail.EmailException: Sending the email to the following server failed : smtp.exmail.qq.com:465
+[INFO] [2016-09-08 22:11:30][com.auais.note.util.mail.MailSendUtil]Sending the email to the following server failed : smtp.exmail.qq.com:465
+[INFO] [2016-09-08 22:11:30][com.auais.note.util.mail.MailSendUtil]blackspider@root.zznote.cn 发送邮件到 776301500@qq.com 失败
+[INFO] [2016-09-08 22:18:25][com.auais.note.util.mail.MailSendUtil]-----------------验证码是：821840
+[INFO] [2016-09-08 22:18:25][com.auais.note.util.mail.MailSendUtil]sendEmail mailTemp:host:smtp.exmail.qq.com,sender:blackspider@root.zznote.cn,receiver:776301500@qq.com,name:蜘蛛笔记,userName:blackspider@root.zznote.cn,password:Abc1234%,subject:蜘蛛笔记验证码,message:蜘蛛笔记注册验证码是：821840,
+[INFO] [2016-09-08 22:18:27][com.auais.note.util.mail.MailSendUtil]blackspider@root.zznote.cn 发送邮件到 776301500@qq.com 成功

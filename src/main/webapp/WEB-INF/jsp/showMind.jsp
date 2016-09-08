@@ -36,7 +36,7 @@
 	function logout() {
 	    $.ajax({
 	        type: "POST",
-	        url: "http://localhost:8080/spiderNote/login/logout",
+	        url: "http://139.224.25.115:8080/spiderNote/login/logout",
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
@@ -52,7 +52,7 @@
 	function login() {
 	    $.ajax({
 	        type: "POST",
-	        url: "http://localhost:8080/spiderNote/login/login",
+	        url: "http://139.224.25.115:8080/spiderNote/login/login",
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
@@ -68,7 +68,7 @@
 	function register() {
 	    $.ajax({
 	        type: "POST",
-	        url: "http://localhost:8080/spiderNote/login/register",
+	        url: "http://139.224.25.115:8080/spiderNote/login/register",
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
@@ -85,12 +85,12 @@
 	function validateEmail() {
 	    $.ajax({
 	        type: "POST",
-	        url: "http://localhost:8080/spiderNote/login/validateEmail",
+	        url: "http://139.224.25.115:8080/spiderNote/login/validateEmail",
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: {
 	        	userName: "776301500@qq.com",
-        		smsCode:"563067"
+        		smsCode:"827312"
 	        },
 	        success: function (jsonResult) {
 	            console.log(jsonResult);
@@ -102,7 +102,7 @@
 	function postSimpleData() {
 	    $.ajax({
 	        type: "POST",
-	        url: "http://localhost:8080/spiderNote/note/test",
+	        url: "http://139.224.25.115:8080/spiderNote/note/test",
 	        contentType: "application/x-www-form-urlencoded; charset=UTF-8", //	必须有
 	        dataType: "json", //	表示返回值类型，不必须
 	        data: { 'note': 'foovalue'},
@@ -116,7 +116,7 @@
 		var noteInfoJson= '{userId:"user0001",deviceId:"device0001",sectionSyncTimestamp:"2016-08-10 16:58:23",notes:[{"noteId":"pro0002","syncTimestamp":"2016-08-10 16:58:23","modifyFlag":0}]}';
 		$.ajax({
 		    type : "POST",
-		    url : "http://localhost:8080/spiderNote/note/syncProjects",
+		    url : "http://139.224.25.115:8080/spiderNote/note/syncProjects",
 		    data : {
 		    	projectInfo : noteInfoJson,
 		    	token : "sssss"
@@ -137,7 +137,7 @@
 		//var noteInfoJson= '{"userId":"user0001","deviceId":"device0001","notes":[],"sections":[{"id":"section2001","userId":"user0001","noteId":"pro0002","undocFlag":"0","sectionType":"1","updateAt":"2016-08-26T08:29:18.476Z","deleteFlag":"1","audioId":{},"text":"","imageIds":[]},{"id":"section4002","userId":"user0001","noteId":"pro0002","undocFlag":"0","sectionType":"2","updateAt":"2016-08-26T08:29:18.476Z","deleteFlag":"1","audioId":{},"imageIds":[],"text":""}]}';
 		$.ajax({
 		    type : "POST",
-		    url : "http://localhost:8080/spiderNote/note/uploadProjects",
+		    url : "http://139.224.25.115:8080/spiderNote/note/uploadProjects",
 		    data : {
 		    	projectInfo : noteInfoJson
 		    },
